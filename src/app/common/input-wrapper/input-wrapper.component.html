@@ -1,0 +1,34 @@
+<div>
+  <label>{{ label }}</label
+  ><br />
+
+  <input
+    *ngIf="type == 'number'"
+    [type]="type"
+    [ngModel]="ph"
+    (ngModelChange)="onChange($event)"
+    (blur)="onTouch()"
+    min="1900"
+    max="2100"
+  />
+
+  <input
+    *ngIf="type != 'number'"
+    [type]="type"
+    [(ngModel)]="ph"
+    (ngModelChange)="onChange($event)"
+    (blur)="onTouch()"
+  />
+  <app-field-error-display
+    name="name"
+    [fieldNgModel]="_formControl"
+    [customFieldErrors]="[{
+        id: 'pattern',
+        text: 'The Url is not valid: http://www.example.com or https://www.example.com',
+      },
+      {
+        id: 'minLength',
+        text: 'The field must have a minimum length of 3',
+      }]"
+  ></app-field-error-display>
+</div>
